@@ -1,22 +1,34 @@
 # SportyStyle – Tienda de ropa deportiva
 
 **Asignatura:** Taller de Plataformas Web – CIB302 
+
 **Estudiante:** Sebastian Alvarez | CIB302-3903 | Actividad semana 6
 
 ---
 
 ## 📁 Estructura del Proyecto
 SportyStyle/
+
 ├── index.html ← Estructura HTML de la tienda
+
 ├── server.js ← Servidor HTTPS con Node.js
+
 ├── cert.pem ← Certificado SSL generado con OpenSSL
+
 ├── key.pem ← Clave privada generada con OpenSSL
+
 ├── README.md ← Documentación del proyecto
+
 ├── css/
+
 │ └── estilos.css ← Estilos visuales y componentes
+
 ├── js/
+
 │ └── app.js ← Lógica JavaScript: productos, carrito, Auth0
+
 └── img/
+
 └── (imágenes de productos)
 
 ---
@@ -30,24 +42,31 @@ Construir autenticación propia requeriría hashear contraseñas, gestionar toke
 
 ### Paso a paso del flujo:
 Usuario hace clic en "Iniciar Sesión"
+
 ↓
 
 loginWithRedirect() redirige a login.auth0.com
+
 ↓
 
 Usuario ingresa credenciales en Auth0 (NUNCA en nuestro sitio)
+
 ↓
 
 Auth0 redirige de vuelta con ?code= en la URL
+
 ↓
 
 handleRedirectCallback() procesa el código y obtiene el token
+
 ↓
 
 window.history.replaceState() limpia ?code= de la URL
+
 ↓
 
 getUser() obtiene los datos del usuario autenticado
+
 ↓
 
 Se muestra "👋 Hola, [nombre]" en el navbar
@@ -209,7 +228,7 @@ https://localhost:3000
 > El navegador mostrará una advertencia de seguridad porque el certificado es auto-firmado.
 > Haz clic en **Opciones avanzadas → Continuar a localhost**. 
 
-### Con Live Server (modo demo sin HTTPS)
+### Opcion 2: Con Live Server (modo demo sin HTTPS)
 1. Abrir la carpeta en Visual Studio Code
 2. Hacer clic derecho en `index.html` → **"Open with Live Server"**
 3. La app corre en `http://127.0.0.1:5500`
