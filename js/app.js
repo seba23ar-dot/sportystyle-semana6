@@ -451,7 +451,7 @@ async function logout() {
   clearCart();
   renderCart();
   if (auth0Client) {
-    await auth0Client.logout({ logoutParams: { returnTo: window.location.origin } });
+    await auth0Client.logout({ logoutParams: { returnTo: window.location.origin  + window.location.pathname } });
   } else {
     document.getElementById("btn-login").classList.remove("hidden");
     document.getElementById("btn-logout").classList.add("hidden");
