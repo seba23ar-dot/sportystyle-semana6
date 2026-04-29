@@ -4,6 +4,8 @@
 
 **Estudiante:** Sebastian Alvarez | CIB302-3903 | Actividad semana 6
 
+**Enlace github-pages:** https://seba23ar-dot.github.io/sportystyle-semana6/ 
+
 ---
 
 ## 📁 Estructura del Proyecto
