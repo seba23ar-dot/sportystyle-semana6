@@ -7,7 +7,7 @@ const AUTH0_CONFIG = {
   domain:   "dev-lzxkdqni81koszff.us.auth0.com",
   clientId: "ZuchTPP6NWxNoQ0pDpqepTCRqyWxOvaY",
   authorizationParams: {
-    redirect_uri: window.location.origin
+    redirect_uri: window.location.origin + window.location.pathname
   }
 };
 
