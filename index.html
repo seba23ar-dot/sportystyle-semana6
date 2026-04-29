@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SportyStyle&reg; </title>
+  <link rel="stylesheet" href="css/estilos.css" />
+  <!-- Auth0 SPA SDK v2 — debe cargarse ANTES que app.js -->
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+</head>
+<body>
+
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="brand">
+  <div class="logo-icon">S</div>
+  <span>Sporty<strong>Style</strong></span>
+</div>
+  <nav class="nav-right" aria-label="Navegacion Principal">
+    <span id="welcome-msg" class="welcome-msg hidden"></span>
+    <button id="btn-login"  class="btn btn-outline" onclick="login()">Iniciar Sesión</button>
+    <button id="btn-logout" class="btn btn-danger hidden" onclick="logout()">Cerrar Sesión</button>
+    <div class="cart-icon" onclick="toggleCart()" role="button" aria-label="Abrir carrito">
+      &#128722; <span id="cart-count">0</span>
+    </div>
+  </nav>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Especialistas en ropa deportiva</h1>
+  <p>Equipate con nosotros según tu disciplina favorita</p>
+</section>
+
+
+<!-- PRODUCTOS -->
+<main class="container">
+
+  <!-- Camisetas -->
+  <h2 class="category-title">Camisetas Deportivas</h2>
+  <div class="product-grid" id="camisetas"></div>
+
+  <!-- Pantalones -->
+  <h2 class="category-title">Pantalones Deportivos</h2>
+  <div class="product-grid" id="pantalones"></div>
+
+  <!-- Accesorios -->
+  <h2 class="category-title">Accesorios de Deporte</h2>
+  <div class="product-grid" id="accesorios"></div>
+
+</main>
+
+
+<!-- Fondo oscuro que aparece al abrir el carrito. Al hacer clic se cierra. -->
+<div id="cart-overlay" class="cart-overlay hidden" onclick="toggleCart()"></div>
+
+
+<!-- CARRITO (panel lateral) -->
+<aside id="cart-panel" class="cart-panel hidden">
+
+  <!-- Cabecera: titulo y boton cerrar -->
+  <div class="cart-panel-header">
+    <h3>&#128722; Mi Carrito</h3>
+    <button class="cart-close-btn" onclick="toggleCart()" aria-label="Cerrar carrito">&#10005;</button>
+  </div>
+
+  <!-- Lista de productos (la llena JavaScript) -->
+  <div id="cart-items"></div>
+
+  <!-- Total (lo actualiza JavaScript) -->
+  <div class="cart-total">
+    <strong>Total: $<span id="cart-total">0</span></strong>
+  </div>
+
+  <!-- Boton ir a pagar -->
+  <button class="btn btn-primary full-width" onclick="goToCheckout()">Ir a Pagar</button>
+
+  <!-- Cierra el carrito y vuelve a la sección de productos -->
+  <button class="btn btn-outline-dark full-width mt-8" onclick="keepShopping()">&#8592; Seguir Comprando</button>
+
+</aside>
+
+
+<!-- MODAL: CHECKOUT -->
+<dialog id="checkout-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>Datos de Facturación y Envío</h2>
+      <button class="cart-close-btn"
+              onclick="closeModal('checkout-modal')"
+              aria-label="Cerrar modal">&#10005;</button>
+    </div>
+
+<!-- Resumen del pedido (lo genera JavaScript) -->
+    <div id="checkout-summary"></div>
+
+<!-- Formulario de facturacion y envio -->
+    <form id="checkout-form" onsubmit="submitOrder(event)" novalidate>
+      <label>Nombre completo
+  <input type="text" id="f-name" placeholder="Esteban Alfonso Marquez Fuenzalida" required autocomplete="name" />
+  <span class="err" id="err-name"></span>
+</label>
+<label>Dirección de envío
+  <input type="text" id="f-address" placeholder="Av. Amapolas 123, Santiago" required autocomplete="street-address" />
+  <span class="err" id="err-address"></span>
+</label>
+<label>Correo electrónico
+  <input type="email" id="f-email" placeholder="correo@gmail.com" required autocomplete="email" />
+  <span class="err" id="err-email"></span>
+</label>
+<label>Teléfono
+  <input type="tel" id="f-phone" placeholder="912345678" required autocomplete="tel" />
+  <span class="err" id="err-phone"></span>
+</label>
+      <button type="submit" class="btn btn-primary full-width mt-16">Confirmar Compra</button>
+      <button type="button" class="btn btn-outline-dark full-width mt-8"
+              onclick="closeModal('checkout-modal')">&#8592; Volver al Carrito</button>
+    </form>
+  </div>
+</dialog>
+
+
+<!-- MODAL: Confirmacion de compra -->
+<dialog id="confirm-modal" class="modal-overlay hidden">
+  <div class="modal-box confirm-box">
+  <h2 style="color: #27ae60; font-size: 2rem;">¡Pedido confirmado!</h2>
+  <h2 class="confirm-title">¡Gracias por tu compra!</h2>
+  <hr style="border: 2px solid #27ae60; margin: 12px 0 20px;">
+    <p id="confirm-name"></p>
+    <div id="confirm-details"></div>
+    <p id="confirm-total"></p>
+    <button class="btn btn-primary mt-16" onclick="finishOrder()">Volver a la tienda</button>
+  </div>
+</dialog>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>&copy; 2026 SportyStyle&reg; - Tienda de Ropa Deportiva &middot; Proyecto Semana 6</p>
+  <p>Desarrollado por <strong>Sebastian Alvarez</strong> &middot; CIB302-3903</p>
+</footer>
+
+
+<script src="js/app.js"></script>
+</body>
+</html>
